@@ -1,7 +1,7 @@
-Lexical analysis
+Lexical analysis (for testing purposes scanfile.txt)
 
-Syntax analysis
+Syntax analysis (for testing purposes parsefile.f2)
 
 Semantic analysis
 
-IR gerneration
+IR generation
