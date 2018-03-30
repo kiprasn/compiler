@@ -1,0 +1,77 @@
+Start
+\-	        Minus
+\+          Plus
+\/	        Divide
+\*          Multiply
+\;		Semicolon
+\,		Comma
+import\b    ImportKeyword
+class\b     ClassKeyword
+struct\b    StructKeyword
+if\b        IfKeyword
+while\b     WhileKeyword
+for\b       ForKeyword
+\:          Colon
+function\b  FunctionKeyword
+read\b      ReadKeyword
+print\b     PrintKeyword
+true\b      TrueKeyword
+false\b     FalseKeyword
+return\b    ReturnKeyword
+\<          LessThan
+\>          MoreThan
+\=          Assign
+\!          Negate
+\{          CurlyBracketLeft
+\}          CurlyBracketRight
+\[          AngleBracketLeft
+\]          AngleBracketRight
+\(          BracketLeft
+\)          BracketRight
+\|\|        LogicalOr
+\&\&        LogicalAnd
+\.          Dot
+int\b       IntType
+bool\b      BoolType
+float\b     FloatType
+string\b    StringType
+char\b      CharType
+[_a-zA-Z][_a-zA-Z0-9]*  Identifier
+[0-9]+      Integer
+\"          String
+
+Minus
+\=          MinusAssign
+
+Plus
+\=          PlusAssign
+
+Multiply
+\=          MultiplyAssign
+
+Divide
+\=          DivideAssign
+\*          CommentStart
+\/.*$       CommentSingleLine
+
+LessThan
+\=          LessEqual
+
+MoreThan
+\=          MoreEqual
+
+Assign
+\=          Equals
+
+Negate
+\=          NotEqual
+
+Integer
+\.[0-9]*    Float
+
+String
+[^"]*       String
+\"          StringEnd
+
+CommentStart
+.*\*\/	CommentEnd

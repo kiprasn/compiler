@@ -1,0 +1,41 @@
+int aaarrr[] = [1, 2;, 3];
+
+/** return type checking */
+function fa(aa: int) : int {
+    int faa;
+    return 123;
+}
+
+int a = fa(123);
+char b;
+float c = 15.00;
+string d = "wew";
+
+/** Assign declaration */
+int aa = c;
+string dd = d;
+int e = c;
+
+int aaa = a > c && a < a || c < a || a < c && a > c;
+
+/** Multiplications */
+a * a; // Int and int
+a * c; // Int and float
+c * c; // Float and float
+c * a; // Float and int
+
+/** Division */
+a / a; // Int and int
+a / c; // Int and float
+c / c; // Float and float
+//c / d; // Float and string
+
+/** Addition */
+a + a; // Int and int
+a + c; // Int and float
+c + c; // Float and float
+c + a; // Float and int
+d + b; // String and char
+b + d; // Char and string
+//a + d; // Int and string
+

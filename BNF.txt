@@ -1,0 +1,213 @@
+﻿<import_keyword>	::=	'import'
+<class_keyword>		::=	'class'
+<struct_keyword>	::=	'struct'
+
+<read_keyword>		::='read'
+<print_keyword>		::='print'
+
+<type>				::=	int|float|string|bool|char
+<returnType>		::=	<type>|void
+
+<if_keyword> 		::= 'if'
+<for_keyword>		::='for'
+<while_keyword>		::='while'
+
+<true_keyword>		::=	'true'
+<false_keyword>		::=	'false'
+
+<l_curly_bracket>	::=	'{'
+<r_curly_bracket>	::=	'}'
+<l_bracket>			::=	'('
+<r_bracket>			::=	')'
+<semicolon_keyword>	::=	';'
+<comma_keyword>		::=	','
+<dot_keyword>		::= '.'
+<l_angle_braces>	::= '['
+<r_angle_braces>	::= ']'
+<not>				::= !
+<and>::= &&
+<or>::= ||
+<comparison>::= < | <= | > | >= | != | ==
+<add_op> ::= +|-
+<mult_op>::= * | /
+<assigmentOp>::= =|-=|+=|*=
+<double_quote> = '"'
+
+//-----------------------Programos struktura------------------------
+<program>::=<imports><statements>\|
+<statements>
+
+<imports>::=<import><imports>\|
+<import>
+<import>::=<import_keyword><path_to_class><semicolon_keyword>
+
+<path_to_class>::=<string>
+
+<class>				::=	<class_keyword><className><l_curly_bracket><classBody><r_curly_bracket>
+<classBody>			::=	<statement_varDeclaration><classBody>\|
+						<function><classBody>\|
+						<function>\|
+						<statement_varDeclaration>
+<className>			::=<identifier>
+<classDec>			::=<className><l_bracket><callParameters><r_bracket>
+
+<block>::=<l_curly_bracket><statements><r_curly_bracket>
+
+//-------------------------Funcijosstruktura----------------------
+
+<functions>	::=	<function><functions>\|
+				<function>
+<function>	::=	<returnType><functionName><l_bracket><parameters><r_bracket><block>\|
+				<returnType><functionName><l_bracket><r_bracket><block>
+
+<parameters>	::=	<parameter><comma_keyword><parameters>\|
+					<parameter>
+<parameter>		::=	<type><variable>
+
+<functionName>	::=	<identifier>
+
+//-------------------------Structures-------------------------------
+
+<structure>			::=<struct_keyword><struct_name><l_curly_bracket><struct_body><r_curly_bracket>
+<struct_name>		::=<identifier>
+<struct_body>		::=	<struct_entry><struct_body> |
+						<struct_entry>
+<struct_entry>		::=<statement_varDeclaration>
+<struct_var>		::=<struct_name><dot_keyword><variable>
+<struct_dec>		::=<struct_name><variable>
+<struct_literal>	::=<l_curly_bracket><multiVar><r_curly_bracket>
+
+//-------------------------Statements---------------------
+
+<statements>::=<statement><semicolon_keyword><statements>\|
+<statement><semicolon_keyword>
+<statement>::=<simpleStmt>|
+<controlStmt>|
+
+<functionCall>|
+
+<statement_return>|
+
+<class>|
+
+<function>
+
+<simpleStmt>::=<statement_varDeclaration>|
+		<statement_assignment>|
+		<io>
+<controlStmt>::=<loop_for>|
+		<loop_while>|
+		<statement_if>
+<functionCall>::=<functionName><l_bracket><callParameters><r_bracket>|
+<className><dot_keyword><functionCall>
+<callParameters>::=<expression><comma_keyword><callParameters>|
+<expression>|
+<statement_if>::=<if_keyword><l_bracket><expression><r_bracket><block>|
+	<if_keyword><expression><block>else<block>|
+	<statement_if>
+
+<return_keyword> ::='return'
+<statement_return>::=<return_keyword><expression>|<return_keyword>
+
+//----------------------SimpleStatments-----------------
+
+<fields>::=<field><fields>|
+<field>
+<field>::=<statement_varDeclaration>
+
+<singleVar>					::=	<variable>|
+<variable><assigmentOp><expression>|
+
+
+								<array_dec>|
+<array_dec><assigmentOp><expression>|
+
+
+								<struct_dec>|
+<struct_dec><assigmentOp><expression>
+<multiVar>					::=<singleVar><comma_keyword><multiVar>|
+<singleVar>
+
+<statement_varDeclaration>::=<type><multiVar>
+<statement_assignment>::=<variable><assigmentOp><expression>|
+<array_call><assigmentOp><expression>
+
+<io>::=<input>|
+<output>
+<input>::=<read_keyword><variable>
+<output>::=<print_keyword><expression>
+
+//----------------------Loops----------------
+<loop_for>::=<for_keyword><l_bracket><expression><semicolon_keyword><expression><semicolon_keyword><expression><r_bracket><block>
+<loop_while>::=<while_keyword><l_bracket><expression><r_bracket><block>
+
+------------------------Expressions--------------------
+
+<expression>::=<logical_and_exp><or><expression>|<logical_and_exp>
+<logical_and_exp>::=<compare_exp><and><logical_and_exp>|<compare_exp>
+<compare_exp>::=<add_exp><comparison><compare_exp>|<add_exp>
+<add_exp>::=<add_op><add_exp>|<term>
+<term>::=<factor><mult_op><term>|<factor>
+<factor>::=<l_bracket><expression><r_bracket>|<variable>|<number>|<constant>|<boolean>|<functionCall>|<classDec>|
+								<struct_var>|<array_call>|<array>|<struct_literal>
+
+--------------------Types<comma_keyword>etc.--------------------------
+number  =   negativeSign, l_bracketint
+        |   float, r_bracket
+        |   l_bracket, int
+        |   floa, tr_bracket
+        ;
+
+int     =   digits
+float   =   int, dot_keyword, digits;
+
+variable    =   identifier
+
+negativeSign    =   '-'
+digits          =   digit, digits
+                |   digit
+                ;
+
+digit       =   '0'|'1'|'2'|'3'|'4'|'5'|'6'|'7'|'8'|'9';
+
+letters     =   letter, letters
+            |   letter
+            ;
+
+letter = "A" | "B" | "C" | "D" | "E" | "F" | "G"
+       | "H" | "I" | "J" | "K" | "L" | "M" | "N"
+       | "O" | "P" | "Q" | "R" | "S" | "T" | "U"
+       | "V" | "W" | "X" | "Y" | "Z" | "a" | "b"
+       | "c" | "d" | "e" | "f" | "g" | "h" | "i"
+       | "j" | "k" | "l" | "m" | "n" | "o" | "p"
+       | "q" | "r" | "s" | "t" | "u" | "v" | "w"
+       | "x" | "y" | "z" ;
+
+identifier  =	letter
+            |   identifier, digit
+            |   identifier, letter
+            ;
+string      =   double_quote, l_bracket, symbol, string
+            |   symbol, r_bracket, double_quote
+            ;
+
+symbol = "[" | "]" | "{" | "}" | "(" | ")" | "<" | ">"
+       | "'" | "=" | "|" | "." | "," | ";" ;
+
+array_dec		=	type, variable, l_angle_braces, int, r_angle_braces
+                |   type, variable, l_angle_braces, r_angle_braces
+                ;
+
+array			=	l_angle_braces, array_elements, r_angle_braces
+array_elements  =	expression, comma_keyword, array_elements
+                |   l_bracket, expression, r_bracket
+                ;
+array_call	=	variable, l_angle_braces, int, r_angle_braces;
+
+boolean     = true_keyword
+            | false_keyword
+            ;
+
+constant    = string
+            | number
+            ;

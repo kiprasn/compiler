@@ -1,0 +1,72 @@
+Program
+    : SimpleDeclaration
+    ;
+
+VarDeclaration
+    : Type, Identifier, SingleDeclaration
+
+SingleDeclaration
+    : Type, Identifier
+    ;
+
+CompareOp
+    : LessThan
+    | MoreThan
+    | LessEqual
+    | MoreEqual
+    | Equals
+    | NotEqual
+    ;
+
+Number
+    : Integer
+    | Float
+    ;
+
+Type
+    : IntType
+    | BoolType
+    | FloatType
+    | StringType
+    | CharType
+    ;
+
+Integer : '0';
+Float : '0.0';
+
+IntType : 'int';
+BoolType : 'bool';
+FloatType : 'float';
+StringType : 'string';
+CharType : 'char';
+Comma : ',';
+Identifier : 'id';
+
+ImportKeyword : 'import';
+Semicolon : ';';
+Assign: '=';
+Multiply: '*';
+Plus : '+';
+LessThan : '<';
+MoreThan : '>';
+LessEqual: '<=';
+MoreEqual: '>=';
+Equals: '==';
+NotEqual: '!=';
+LogicalOr : '||';
+LogicalAnd : '&&';
+String : '...';
+ForKeyword : 'for';
+CurlyBracketLeft: '{';
+CurlyBracketRight: '}';
+BracketLeft : '(';
+BracketRight : ')';
+IfKeyword: 'if';
+WhileKeyword: 'while';
+FunctionKeyword: 'function';
+Colon: ':';
+ClassKeyword : 'class';
+AngleBracketLeft: '[';
+AngleBracketRight: ']';
+ReturnKeyword: 'return';
+Dot: '.';

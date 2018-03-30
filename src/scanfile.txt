@@ -1,0 +1,27 @@
+"some lines of text"
+           -+*/
+       /*
+ this is a comment bro /******
+*/
+
+import something 
+
+/* another one */
+class somebro {} {} {}
+
+// Single line comment
+struct frog
+
+int
+
+if dudes == != {
+while ()
+
+<
+
+<=
+}
+
+"single"
+"multi
+     line"

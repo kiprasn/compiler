@@ -1,0 +1,329 @@
+Program
+    : Imports, Statements
+    ;
+
+Imports
+    : {Import}
+    ;
+
+Import
+    : ImportKeyword, PathToClass, Semicolon
+    ;
+
+PathToClass
+    : String
+    ;
+
+Statements
+    : Statement, Statements
+    |
+    ;
+
+FunctionStatements
+    : FunctionStatement, FunctionStatements
+    |
+    ;
+
+ClassStatements
+    : ClassStatement, ClassStatements
+    |
+    ;
+
+Statement
+    : Expression, Semicolon
+    | ConditionalStatements
+    | SingleDeclaration, Semicolon
+    | LoopStatements
+    | ClassDeclaration
+    | FunctionDeclaration
+    | ReturnStatement
+    ;
+
+FunctionStatement
+    : Expression, Semicolon
+    | ConditionalStatements
+    | SingleDeclaration, Semicolon
+    | LoopStatements
+    | ReturnStatement
+    ;
+
+ClassStatement
+    : Expression, Semicolon
+    | ConditionalStatements
+    | SingleDeclaration, Semicolon
+    | LoopStatements
+    | ReturnStatement
+    ;
+
+Expression
+    : LogicalExpression
+    ;
+
+LogicalExpression
+    : AndExpression, LogicalExpressionEx
+    ;
+
+LogicalExpressionEx
+    : LogicalOr, AndExpression, LogicalExpressionEx
+    |
+    ;
+
+AndExpression
+    : CompareExpression, AndExpressionEx
+    ;
+
+AndExpressionEx
+    : LogicalAnd, CompareExpression, AndExpressionEx
+    |
+    ;
+
+CompareExpression
+    : ArithmeticExpression, CompareExpressionEx
+    ;
+
+CompareExpressionEx
+    : CompareOp, ArithmeticExpression
+    |
+    ;
+
+ArithmeticExpression
+    : Term, ArithmeticExpressionEx
+    ;
+
+ArithmeticExpressionEx
+    : Plus, ArithmeticExpression
+    | Minus, ArithmeticExpression
+    |
+    ;
+
+Term
+    : TermMult, TermDiv
+    ;
+
+TermDiv
+    : Divide, Term
+    |
+    ;
+
+TermMult
+    : Factor, TermMultEx
+    ;
+
+TermMultEx
+    : Multiply, TermMult
+    |
+    ;
+
+Factor
+    : IdentifierFactor
+    | Number
+    | String
+    | BracketLeft, Expression, BracketRight
+    ;
+
+SingleDeclaration
+    : Type, Identifier, ArrayOpt, SingleDeclarationEx
+    ;
+
+SingleDeclarationEx
+    : Assign, Expression
+    |
+    ;
+
+ArrayOpt
+    : AngleBracketLeft, ArraySize, AngleBracketRight
+    |
+    ;
+
+ArraySize
+    : Integer
+    |
+    ;
+
+IdentifierFactor
+    : Identifier, IdentifierFactorEx
+    | ArrayLiteral
+    ;
+
+ArrayLiteral
+    : AngleBracketLeft, Variables, AngleBracketRight
+    ;
+
+Variables
+    : Identifier, VariablesEx
+    | Number, VariablesEx
+    | String, VariablesEx
+    |
+    ;
+
+VariablesEx
+    : Comma, Variables
+    |
+    ;
+
+IdentifierFactorEx
+    : ArrayCall, IdentifierFactorEx
+    | FunctionCall, IdentifierFactorEx
+    | MemberCall
+    |
+    ;
+
+MemberCall
+    : Dot, Identifier, IdentifierFactorEx
+    ;
+
+FunctionCall
+    : BracketLeft, FunctionCallArgs, BracketRight
+    ;
+
+FunctionCallArgs
+    : Expression, FunctionCallArgsEx
+    |
+    ;
+
+FunctionCallArgsEx
+    : Comma, FunctionCallArgs
+    |
+    ;
+
+ArrayCall
+    : AngleBracketLeft, ArrayCallIdx, AngleBracketRight
+    ;
+
+ArrayCallIdx
+    : Number
+    | Identifier
+    ;
+
+ClassDeclaration
+    : ClassKeyword, Identifier, ClassBody
+    ;
+
+ClassBody
+    : ClassBlock
+    ;
+
+ClassBlock
+    : CurlyBracketLeft, ClassStatements, CurlyBracketRight
+    ;
+
+ReturnStatement
+    : ReturnKeyword, ReturnStatementEx
+    ;
+
+ReturnStatementEx
+    : Expression, Semicolon
+    | Semicolon
+    ;
+
+ConditionalStatements
+    : IfStmt
+    ;
+
+IfStmt
+    : IfKeyword, BracketLeft, Expression, BracketRight, Block
+    ;
+
+LoopStatements
+    : ForLoop
+    | WhileLoop
+    ;
+
+ForLoop
+    : ForKeyword, BracketLeft,
+        Expression, Semicolon,
+        Expression, Semicolon,
+        Expression, BracketRight, Block
+    ;
+
+WhileLoop
+    : WhileKeyword, BracketLeft, Expression, BracketRight, Block
+    ;
+
+FunctionDeclaration
+    : FunctionKeyword, Identifier,
+        BracketLeft, ArgDeclaration,
+        BracketRight, Colon, Type, FunctionBlock
+    ;
+
+FunctionBlock
+    : CurlyBracketLeft, FunctionStatements, CurlyBracketRight
+    ;
+
+ArgDeclaration
+    : Identifier, Colon, Type, ArgDeclarationEx
+    |
+    ;
+
+ArgDeclarationEx
+    : Comma, Identifier, Colon, Type, ArgDeclarationEx
+    |
+    ;
+
+Block
+    : CurlyBracketLeft, Statements, CurlyBracketRight
+    ;
+
+CompareOp
+    : LessThan
+    | MoreThan
+    | LessEqual
+    | MoreEqual
+    | Equals
+    | NotEqual
+    ;
+
+Number
+    : Integer
+    | Float
+    ;
+
+Type
+    : IntType
+    | BoolType
+    | FloatType
+    | StringType
+    | CharType
+    ;
+
+Integer : '0';
+Float : '0.0';
+
+IntType : 'int';
+BoolType : 'bool';
+FloatType : 'float';
+StringType : 'string';
+CharType : 'char';
+Comma : ',';
+Identifier : 'id';
+
+ImportKeyword : 'import';
+Semicolon : ';';
+Assign: '=';
+Multiply: '*';
+Plus : '+';
+Divide : '/';
+Minus: '-';
+LessThan : '<';
+MoreThan : '>';
+LessEqual: '<=';
+MoreEqual: '>=';
+Equals: '==';
+NotEqual: '!=';
+LogicalOr : '||';
+LogicalAnd : '&&';
+String : '...';
+ForKeyword : 'for';
+CurlyBracketLeft: '{';
+CurlyBracketRight: '}';
+BracketLeft : '(';
+BracketRight : ')';
+IfKeyword: 'if';
+WhileKeyword: 'while';
+FunctionKeyword: 'function';
+Colon: ':';
+ClassKeyword : 'class';
+AngleBracketLeft: '[';
+AngleBracketRight: ']';
+ReturnKeyword: 'return';
+Dot: '.';
